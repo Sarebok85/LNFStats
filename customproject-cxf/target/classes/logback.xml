@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<!-- Se define los niveles de Logging deseados -->
+	<property name="logger.root.level" value="INFO" />
+	<property name="logger.project.level" value="DEBUG" />
+	<property name="logger.cxf.level" value="INFO" />
+	<property name="logger.springframework.level" value="INFO" />
+	<property name="logger.hibernate.level" value="INFO" />
+	
+	<!-- Configuración de logging -->
+	<appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<Pattern>[%thread] %d{yyyy-MM-dd HH:mm:ss} %-5level %logger - %msg%n
+			</Pattern>
+		</encoder>
+		<!-- El nivel TRACE se filtra, no se va a pintar bajo ningún concepto en 
+			el log, queda fuera -->
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>TRACE</level>
+		</filter>
+	</appender>
+
+	<!-- Configuración de log de Apache CXF -->
+	<logger name="org.apache.cxf" level="${logger.cxf.level}"
+		additivity="false">
+		<appender-ref ref="consoleAppender" />
+	</logger>
+
+	<!-- Configuración de log de Spring Framework -->
+	<logger name="org.springframework" level="${logger.springframework.level}"
+		additivity="false">
+		<appender-ref ref="consoleAppender" />
+	</logger>
+
+	<!-- Configuración del log de Hibernate -->
+	<logger name="org.hibernate" level="${logger.hibernate.level}"
+		additivity="false">
+		<appender-ref ref="consoleAppender" />
+	</logger>
+
+	<!-- Configuración de log del propio dominio del proyecto -->
+	<logger name="net.ddns.jmsola.customproject" level="${logger.project.level}"
+		additivity="false">
+		<appender-ref ref="consoleAppender" />
+	</logger>
+
+	<root level="${logger.root.level}">
+		<appender-ref ref="consoleAppender" />
+	</root>
+</configuration>
+
+  

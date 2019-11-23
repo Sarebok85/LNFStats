@@ -1,1 +1,1 @@
-LNFStats
+Aplicación que hace scraping de la web www.lnfs.es para obtener mediante archivos públicos y accesibles la información de las temporadas.

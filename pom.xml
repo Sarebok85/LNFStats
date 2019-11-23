@@ -1,0 +1,138 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>net.ddns.jmsola</groupId>
+	<artifactId>customproject</artifactId>
+	<version>0.1.0</version>
+	<packaging>pom</packaging>
+
+	<properties>
+		<!-- JEE versions -->
+		<java.version>1.8</java.version>
+		<!-- Project encoding -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.build.targetEncoding>UTF-8</project.build.targetEncoding>
+		<!-- JSF & Primefaces version -->
+		<jsf.version>2.2.13</jsf.version>
+		<primefaces.version>6.0</primefaces.version>
+		<primefaces.extensions.version>6.0.0</primefaces.extensions.version>
+		<primefaces.themes.version>1.0.8</primefaces.themes.version>
+		<!-- JSP versions -->
+		<jsp.version>2.3.1</jsp.version>
+		<jsp.jstl.version>1.2</jsp.jstl.version>
+		<javax.servlet.api.version>3.1.0</javax.servlet.api.version>
+		<!-- Spring Framework versions -->
+		<spring.version>4.3.2.RELEASE</spring.version>
+		<spring.security.version>4.1.3.RELEASE</spring.security.version>
+		<!-- Aspect4J versions -->
+		<aspectj.version>1.8.8</aspectj.version>
+		<!-- Bean Validation versions -->
+		<javax.validation.version>1.1.0.Final</javax.validation.version>
+		<hibernate.validator.version>5.4.1.Final</hibernate.validator.version>
+		<!-- Hibernate versions -->
+		<hibernate.version>5.2.2.Final</hibernate.version>
+		<!-- CXF versions -->
+		<cxf.version>3.1.12</cxf.version>
+		<!-- Jackson versions -->
+		<jackson.version>1.9.13</jackson.version>
+		<jackson.databind.version>2.8.3</jackson.databind.version>
+		<!-- Logging version -->
+		<logback.version>1.2.1</logback.version>
+		<slf4j.version>1.7.22</slf4j.version>
+		<!-- JWT J2EE Version -->
+		<jjwt.version>0.7.0</jjwt.version>
+		<modelmapper.version>1.1.0</modelmapper.version>
+		<!-- Skip tests -->
+		<maven.skip.tests>false</maven.skip.tests>
+	</properties>
+
+	<developers>
+		<developer>
+			<id>jmsola</id>
+			<name>José María Sola Durán</name>
+			<organization>MetaEnlace Sistemas de Información</organization>
+			<email>josemaria.sola.duran@gmail.com</email>
+			<roles>
+				<role>Product Owner</role>
+				<role>Scrum Master</role>
+				<role>Developer</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-framework-bom</artifactId>
+				<version>${spring.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-bom</artifactId>
+				<version>${spring.security.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.3</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.19.1</version>
+				<configuration>
+					<argLine>-Dfile.encoding=UTF-8</argLine>
+					<parallel>methods</parallel>
+					<threadCount>4</threadCount>
+					<skipTests>${maven.skip.tests}</skipTests>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.surefire</groupId>
+						<artifactId>surefire-junit47</artifactId>
+						<version>2.19.1</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+
+	<modules>
+		<module>customproject-jsf</module>
+		<module>customproject-mvc</module>
+		<module>customproject-angularjs-jwt</module>
+		<module>customproject-angularjs</module>
+		<module>customproject-api-jwt</module>
+		<module>customproject-api</module>
+		<module>customproject-cxf</module>
+		<module>customproject-cron</module>
+		<module>customproject-services</module>
+		<module>customproject-dao</module>
+		<module>customproject-model</module>
+	</modules>
+</project>
